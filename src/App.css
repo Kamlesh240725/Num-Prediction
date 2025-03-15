@@ -1,0 +1,80 @@
+/* src/App.css */
+.App {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+}
+body{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: monospace;
+}
+body::selection {
+  background: none; /* Changes the background color of the selected text */
+  color: #27e02e; /* Changes the text color when selected */
+}
+h1 {
+  margin-bottom: 20px;
+}
+h2 {
+  padding-top: 20px;
+}
+
+.canvas-container {
+
+  margin: 20px 0;
+}
+
+.drawing-canvas {
+  border-radius: 4px;
+  cursor: crosshair;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.button-group {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  background-color: rgb(11, 107, 0);
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+.clear{
+  background-color: #2d0000;
+  color: red;
+}
+/* .submit{
+  background-color: #00002d;
+  color: blue;
+} */
+.clear:hover {
+  background-color: rgb(101, 0, 0);
+}
+.submit:hover {
+  background-color: #18951d;
+}
+
+.button:disabled {
+  background-color: #cccccc;
+  cursor: not-allowed;
+}
+
+.prediction-result {
+  margin-top: 20px;
+  padding: 15px;
+}
+
+h2 {
+  margin: 0;
+  font-size: 24px;
+}
