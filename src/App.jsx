@@ -17,13 +17,24 @@ function App() {
     context.strokeStyle = 'white';
   }, []);
 
-  const startDrawing = (e) => {
+  const getCoordinates = (e) => {
+    const canvas = canvasRef.current;
+    const rect = canvas.getBoundingClientRect();
+
+    if (e.touches) {
+      const touch = e.touches[0];
+      return { x: touch.clientX - rect.left, y: touch.clientY - rect.top };
+    }
+
+    return { x: e.clientX - rect.left, y: e.clientY - rect.top };
+  };
+
+   const startDrawing = (e) => {
+    e.preventDefault();
+    const { x, y } = getCoordinates(e);
+
     const canvas = canvasRef.current;
     const context = canvas.getContext('2d');
-    const rect = canvas.getBoundingClientRect();
-    const x = e.clientX - rect.left;
-    const y = e.clientY - rect.top;
-    
     context.beginPath();
     context.moveTo(x, y);
     setIsDrawing(true);
@@ -31,13 +42,12 @@ function App() {
 
   const draw = (e) => {
     if (!isDrawing) return;
-    
+    e.preventDefault();
+
+    const { x, y } = getCoordinates(e);
     const canvas = canvasRef.current;
     const context = canvas.getContext('2d');
-    const rect = canvas.getBoundingClientRect();
-    const x = e.clientX - rect.left;
-    const y = e.clientY - rect.top;
-    
+
     context.lineTo(x, y);
     context.stroke();
   };
@@ -98,6 +108,9 @@ function App() {
           onMouseMove={draw}
           onMouseUp={endDrawing}
           onMouseOut={endDrawing}
+          onTouchStart={startDrawing}
+          onTouchMove={draw}
+          onTouchEnd={endDrawing}
           className="drawing-canvas bg-black"
         />
       </div>
