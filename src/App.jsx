@@ -122,11 +122,13 @@ function App() {
         </button>
       </div>
       
-      {prediction !== null && (
-        <div className="prediction-result">
-          <h2>Prediction: {prediction}</h2>
+      
+      <div className="prediction-result">
+          <h2
+          style={{color: prediction === 'Error in recognition' ? 'red' : 
+            prediction === null ? "#242424" : 'white'}}
+          >Prediction: {prediction}</h2>
         </div>
-      )}
     </div>
   );
 }
